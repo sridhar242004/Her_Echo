@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerEcho - Sign Up</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #feca57;
+            --tertiary-color: #ff9ff3;
+            --text-color: #333;
+            --bg-color: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .signup-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 500px;
+            max-width: 90%;
+            position: relative;
+        }
+
+        .signup-header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            position: relative;
+        }
+
+        .signup-header h2 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .signup-form {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-control {
+            border: none;
+            border-bottom: 2px solid #ddd;
+            border-radius: 0;
+            padding: 10px 0;
+            font-size: 16px;
+            background-color: transparent;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-control-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px 0;
+            transition: all 0.3s;
+            pointer-events: none;
+            color: #aaa;
+        }
+
+        .form-control:focus + .form-control-placeholder,
+        .form-control:not(:placeholder-shown) + .form-control-placeholder {
+            font-size: 12px;
+            transform: translateY(-20px);
+            color: var(--primary-color);
+        }
+
+        .btn-signup {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 0;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .btn-signup:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .login-link a:hover {
+            color: var(--secondary-color);
+        }
+
+        .empowerment-icon {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 60px;
+            color: white;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateX(-50%) translateY(0px);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            100% {
+                transform: translateX(-50%) translateY(0px);
+            }
+        }
+
+        .empowerment-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .password-toggle {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .social-signup {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-signup-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 10px;
+            font-size: 18px;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-signup-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .facebook {
+            background-color: #3b5998;
+        }
+
+        .google {
+            background-color: #db4a39;
+        }
+
+        .twitter {
+            background-color: #1da1f2;
+        }
+        .strength-meter {
+            height: 4px;
+            background-color: #ddd;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .strength-meter-fill {
+            height: 100%;
+            width: 0;
+            transition: width 0.3s;
+        }
+
+        .strength-text {
+            font-size: 12px;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .terms-checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .terms-checkbox input {
+            margin-right: 10px;
+        }
+
+        .terms-checkbox label {
+            font-size: 14px;
+        }
+
+        .terms-checkbox a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .terms-checkbox a:hover {
+            color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-header">
+            <i class="fas fa-fist-raised empowerment-icon"></i>
+            <h2>Join HerEcho</h2>
+        </div>
+        <form class="signup-form">
+            <div class="form-group">
+                <input type="text" class="form-control" id="fullname" placeholder=" " required>
+                <label for="fullname" class="form-control-placeholder">Full Name</label>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" id="email" placeholder=" " required>
+                <label for="email" class="form-control-placeholder">Email Address</label>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" placeholder=" " required>
+                <label for="password" class="form-control-placeholder">Password</label>
+                <i class="fas fa-eye password-toggle" id="passwordToggle"></i>
+                <div class="strength-meter">
+                    <div class="strength-meter-fill"></div>
+                </div>
+                <div class="strength-text"></div>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="confirmPassword" placeholder=" " required>
+                <label for="confirmPassword" class="form-control-placeholder">Confirm Password</label>
+            </div>
+            <div class="terms-checkbox">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+            </div>
+            <button type="submit" class="btn btn-signup">Sign Up</button>
+            <div class="social-signup">
+                <a href="#" class="social-signup-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-signup-btn google"><i class="fab fa-google"></i></a>
+                <a href="#" class="social-signup-btn twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+            <div class="login-link">
+                Already have an account? <a href="login.html">Log In</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const passwordToggle = document.getElementById('passwordToggle');
+        const passwordInput = document.getElementById('password');
+        const strengthMeter = document.querySelector('.strength-meter-fill');
+        const strengthText = document.querySelector('.strength-text');
+
+        passwordToggle.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+
+        passwordInput.addEventListener('input', function() {
+            const strength = calculatePasswordStrength(this.value);
+            updateStrengthMeter(strength);
+        });
+
+        function calculatePasswordStrength(password) {
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
+            if (password.match(/\d/)) strength++;
+            if (password.match(/[^a-zA-Z\d]/)) strength++;
+            return strength;
+        }
+
+        function updateStrengthMeter(strength) {
+            const width = (strength / 4) * 100;
+            strengthMeter.style.width = `${width}%`;
+
+            let color, text;
+            switch(strength) {
+                case 0:
+                case 1:
+                    color = '#ff4d4d';
+                    text = 'Weak';
+                    break;
+                case 2:
+                    color = '#ffa64d';
+                    text = 'Moderate';
+                    break;
+                case 3:
+                    color = '#99cc00';
+                    text = 'Strong';
+                    break;
+                case 4:
+                    color = '#22cc22';
+                    text = 'Very Strong';
+                    break;
+            }
+
+            strengthMeter.style.backgroundColor = color;
+            strengthText.textContent = text;
+            strengthText.style.color = color;
+        }
+    </script>
+</body>
+</html>
